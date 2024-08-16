@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
   Text,
@@ -24,12 +24,20 @@ const Posts = () => {
       );
       return response.data;
     },
-    onSuccess: () => setRefreshing(false),
-    onError: () => {
+  });
+
+  useEffect(() => {
+    if (getPostsQuery.isError) {
       setRefreshing(false);
       Alert.alert("Unable to fetch posts at this time");
-    },
-  });
+    }
+  }, [getPostsQuery.isError]);
+
+  useEffect(() => {
+    if (!getPostsQuery.isLoading && !getPostsQuery.isError) {
+      setRefreshing(false);
+    }
+  }, [getPostsQuery.isLoading]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);

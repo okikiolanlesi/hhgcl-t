@@ -60,6 +60,7 @@ const Posts = () => {
 
   return (
     <ScrollView
+      style={{ flex: 1, backgroundColor: "#fff" }}
       contentContainerStyle={{ flexGrow: 1 }}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -71,6 +72,12 @@ const Posts = () => {
       {getPostsQuery.data?.map((post: any) => (
         <Pressable
           key={post.id}
+          style={{
+            padding: 10,
+            borderBottomWidth: 1,
+            borderColor: "#ccc",
+            backgroundColor: "#f9f9f9",
+          }}
           onPress={() =>
             router.push({
               pathname: "/postDetails",

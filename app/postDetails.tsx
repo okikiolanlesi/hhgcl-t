@@ -8,7 +8,14 @@ const PostDetails = () => {
   const router = useRouter();
 
   return (
-    <View style={{ padding: 20 }}>
+    <View
+      style={{
+        padding: 20,
+        borderBottomWidth: 1,
+        borderColor: "#ccc",
+        backgroundColor: "#f9f9f9",
+      }}
+    >
       <Pressable onPress={router.back}>
         <Text>Go Back</Text>
       </Pressable>
